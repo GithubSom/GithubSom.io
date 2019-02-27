@@ -1,0 +1,324 @@
+D3
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+		<style type="text/css">
+        .map { position: absolute;
+			   left: 300px;
+			   top: 150px; }
+		
+	
+        </style>
+
+  <title>SB Admin - Charts</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar Search -->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+      <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bell fa-fw"></i>
+          <span class="badge badge-danger">9+</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-envelope fa-fw"></i>
+          <span class="badge badge-danger">7</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#">Settings</a>
+          <a class="dropdown-item" href="#">Activity Log</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+        </div>
+      </li>
+    </ul>
+
+  </nav>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="geoChart.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>geoChart</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="leaflet.html">
+          <i class="fas fa-fw fa-map-signs"></i>
+          <span>Leaflet</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="D3.html">
+          <i class="fas fa-fw fa-map-marked"></i>
+          <span>D3</span></a>
+      </li>
+    </ul>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Charts</li>
+        </ol>
+
+        <!-- Area Chart Example-->
+        <div class="card mb-3">
+          <div id="mapid" style="width: 100%; height: 100%;"></div>
+
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-bar-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+
+  <script type="text/javascript">
+            //Width and height
+            var w = 1750;
+            var h = 500;
+            
+            //Define map projection
+            var projection = d3.geoNaturalEarth1()
+                        .scale(180)
+                        .translate([w/2, h/2])
+
+            //Define path generator
+            var path = d3.geo.path()
+                             .projection(projection);
+            var svg = document.getElementById('mapid');
+            //Create SVG element
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width", w)
+                        .attr("height", h);
+
+            //Color scale for the choropleth
+            var color = d3.scale.quantize()
+                                .range(["rgb(190,240,234)", "rgb(158,233,223)", "rgb(110,222,208)", 
+                                        "rgb(65,153,142)" ,  "rgb(37,87,81)"]);
+            
+            //Load productivity
+            d3.json("http://emotional-apps.com/apis/meit/stats/getdata.php?test=1&gender=all&age=all&begindate=2000-01-01&enddate=2018-02-04", function(data){
+            
+            //set minimum and max for the domain
+            color.domain([
+                    d3.min(data, function(d) { return parseFloat(d.score_average); }),
+                    d3.max(data, function(d) { return parseFloat(d.score_average); })]);
+                    
+            //Load in GeoJSON data //we have a geometry of choropleth in one side and the data in other side and we need to integrate
+            d3.json("http://pixel.uji.es/teaching/countries.geo.json.php", function(json) {
+           
+            //add forloop to iterate on the country geometry and  add the value property to the geometry
+            //Merge the ag. data and GeoJSON
+            //Loop through once for each ag. data value
+            for (var i = 0; i < data.length; i++) {
+
+                //Grab country name
+                var dataCountry = data[i].iso3;
+
+                //Grab data value, and convert from string to float
+                var dataValue = parseFloat(data[i].score_average);
+
+                //Find the corresponding state inside the GeoJSON
+                for (var j = 0; j < json.features.length; j++) {
+                    var jsonCountry = json.features[j].id;
+                    if (dataCountry == jsonCountry) {
+
+                        //Copy the data value into the JSON
+                        json.features[j].value= dataValue;
+
+                        //Stop looking through the JSON
+                        break;
+                    }
+                }
+            }
+            //Bind data and create one path per GeoJSON feature
+            svg.selectAll("path")
+				.data(json.features)
+				.enter()
+				.append("path")
+				.attr("d", path)
+				.style("fill",  function(d) {
+								//Get data value
+								var value = d.value;
+                                //console.log(value);
+								if (value) {
+										//If value exists...
+										return color(value);
+								} else {//missing states
+										//If value is undefined...
+										return "rgb(225,225,225)";
+                                        
+								}
+                                
+				})
+                // Adding dynmaic feature on hover
+                .append("title")
+                .text(function (d){
+                    var value = d.value;
+                    if(value){
+                        //If value exists...
+                        return d.properties.name + "  EI Score: " + parseFloat(value).toFixed(2);
+                    } else {
+                        //If value is undefined...
+                        return d.properties.name + "  " + "EI Score: Unknown";
+                    }
+                    
+                })
+			});
+		});
+
+    // Adding Legend in the map
+    var legend = svg.selectAll('g.legendEntry')
+        .data(color.range())
+        .enter()
+        .append('g').attr('class', 'legendEntry');
+        var ls_w = 20, ls_h = 20;
+    legend
+        .append('rect')
+        .attr("x", 500)
+        .attr("y", function(d, i) {
+            return h - (i*ls_h) - 2*ls_h;
+    })
+        .attr("width", ls_w)
+        .attr("height", ls_h)
+        .style("stroke", "black")
+        .style("stroke-width", 1)
+        .style("fill", function(d){return d;}); 
+       //the data objects are the fill colors
+    legend
+        .append('text')
+        .attr("x", 50) //leave 5 pixel space after the <rect>
+        .attr("y", function(d, i) {
+            return h - (i*ls_h) - ls_h - 4;
+    })
+    // Legend Text for Display 
+    var legend_labels = ["44 and below", "45 - 62", "63 - 80", "81 - 92", "93 and above"];
+    legend.append("text")
+    .attr("x",530)
+    .attr("y",function(d,i){return h - (i*ls_h) - ls_h - 4;})
+    .text(function(d,i){ return legend_labels[i]; 
+ });
+
+   </script>
+
+</body>
+
+</html>
