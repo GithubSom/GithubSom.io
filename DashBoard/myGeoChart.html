@@ -121,7 +121,7 @@
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="index.html">Dashboard</a>
           </li>
           <li class="breadcrumb-item active">Geo Chart</li>
         </ol>
@@ -198,7 +198,7 @@
   function getjsondata()
   {
         var jsonDataString = $.ajax({
-        url:"http://emotional-apps.com/apis/meit/stats/getdata.php?test=1&gender=all&age=all&begindate=2000-01-01&enddate=2014-11-24",
+        url:"https://emotional-apps.com/apis/meit/stats/getdata.php?test=1&gender=all&age=all&begindate=2000-01-01&enddate=2014-11-24",
         dataType:"json",
         async:false
       }).responseText;
